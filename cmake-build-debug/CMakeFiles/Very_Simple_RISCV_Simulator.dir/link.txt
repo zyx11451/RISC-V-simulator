@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/Very_Simple_RISCV_Simulator.dir/main.cpp.o  -o Very_Simple_RISCV_Simulator 
