@@ -92,12 +92,12 @@ public:
     CommitMessage commit(ReorderBufferElements& tar){
         //注意commit要放在统计write之后，防止没被统计就交上去的情况;
         ++cnt;
-        if(cnt){
-           for(int i=0;i<32;++i){
-                cout<<(int)(cr->r[i])<<' ';
-            }
-           cout<<'\n';
-        }
+        //if(cnt){
+        //   for(int i=0;i<32;++i){
+        //        cout<<(int)(cr->r[i])<<' ';
+        //    }
+        //   cout<<'\n';
+        //}
 
         //cout<<tar.ins.pc<<' '<<tar.value<<' '<<tar.destination<<'\n';
         if(tar.rob_state==ReorderBufferElements::special){
