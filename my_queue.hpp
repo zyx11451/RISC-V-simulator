@@ -41,6 +41,9 @@ namespace kingzyx{
         T& operator[](const int in){
             return data[in];
         }
+        void clear(){
+            end=begin;
+        }
     };
 }
 #endif //MAIN_CPP_MY_QUEUE_HPP

@@ -44,7 +44,8 @@ enum order_type{
     Or,
     And,
     Null,
-    Error
+    Error,
+    Li
 };
 class instruction{
 private:
@@ -57,6 +58,7 @@ public:
     uint32_t immediate;//存储算完后的地址
     uint32_t rs1,rs2;
     uint32_t offset;
+    uint32_t pc;//当前指令在内存中的位置
     instruction(){
         instruction_ID=0;
         type=order_type::Null;
@@ -71,11 +73,11 @@ public:
     }
     bool isTypeI() const{
         return type==Jalr||type==Lb||type==Lh||type==Lw||type==Lbu||type==Lhu
-        ||type==Addi||type==Slti||type==Sltiu||type==Xori||type==Ori||type==Addi
+        ||type==Addi||type==Slti||type==Sltiu||type==Xori||type==Ori||type==Andi
         ||type==Slli||type==Srli||type==Srai;
     }
     bool isCalc() const{
-        return type==Addi||type==Slti||type==Sltiu||type==Xori||type==Ori||type==Addi
+        return type==Addi||type==Slti||type==Sltiu||type==Xori||type==Ori||type==Andi
                ||type==Slli||type==Srli||type==Srai||type==Add||type==Sub||type==Sll||
                type==Slt||type==Sltu||type==Xor||type==Srl||type==Sra||type==Or||type==And;
     }
@@ -91,6 +93,9 @@ public:
     bool isTypeR() const{
         return type==Add||type==Sub||type==Sll||type==Slt||type==Sltu||type==Xor
         ||type==Srl||type==Sra||type==Or||type==And;
+    }
+    bool isLoad() const{
+        return type==Lb||type==Lh||type==Lw||type==Lbu||type==Lhu;
     }
 };
 #endif //MAIN_CPP_INSTRUCTION_HPP

@@ -1,8 +1,11 @@
 #include <iostream>
-#include "alu.hpp"
-#include "Register.hpp"
 #include "Computer.hpp"
 int main() {
-    std::cout << "Hello, World!" << std::endl;
-    return 0;
+    freopen("a.in","r",stdin);
+    freopen("a.out","w",stdout);
+    ControlUnit my_simulator;
+    my_simulator.ini();
+    while (true){
+        my_simulator.run();
+    }
 }

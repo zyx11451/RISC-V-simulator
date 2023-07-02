@@ -7,6 +7,7 @@
 #include <iostream>
 class Register {
 private:
+
     uint32_t data;
     //可能添加新东西
 public:
@@ -26,7 +27,10 @@ public:
         data=a;
         return *this;
     }
-    //todo 要一个向uint32_t转换的重载
+    Register& operator=(const uint32_t &a){
+        data=a;
+        return *this;
+    }
     operator uint32_t (){
         return data;
     }
@@ -38,6 +42,22 @@ public:
     ComputerRegister(){
         for(int & i : reorder){
             i=-1;
+        }
+        for(int i=0;i<32;++i){
+            r[i]=0;
+        }
+    }
+    ComputerRegister& operator=(const ComputerRegister& other){
+        if(&other== this) return *this;
+        for(int i=0;i<32;++i){
+            r[i]=other.r[i];
+            reorder[i]=other.reorder[i];
+        }
+        return *this;
+    }
+    void flush(){
+        for(int i=0;i<32;++i){
+            reorder[i]=-1;
         }
     }
 };
