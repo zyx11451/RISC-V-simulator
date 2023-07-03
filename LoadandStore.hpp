@@ -179,7 +179,10 @@ public:
                 if(tar.executing_stage==3){
 
                     //可能会改错
-                    (*rob)[tar.destination].value=(char)((*ComputerMemory)[tar.A+3]);
+                    if(tar.A%4==0) (*rob)[tar.destination].value=(char)(*ComputerMemory)[tar.A+3];
+                    else if(tar.A%4==1) (*rob)[tar.destination].value=(char)(*ComputerMemory)[tar.A+1];
+                    else if(tar.A%4==2) (*rob)[tar.destination].value=(char)(*ComputerMemory)[tar.A-1];
+                    else if(tar.A%4==3) (*rob)[tar.destination].value=(char)(*ComputerMemory)[tar.A-3];
                     (*rob)[tar.destination].rob_state=ReorderBufferElements::write;
                     tar.now_status=LoadAndStoreReservationStationElement::finished;
                 }
@@ -192,7 +195,10 @@ public:
                 //地址算完，进行读取操作
                 tar.executing_stage++;
                 if(tar.executing_stage==3){
-                    (*rob)[tar.destination].value=(*ComputerMemory)[tar.A+3];
+                    if(tar.A%4==0) (*rob)[tar.destination].value=(*ComputerMemory)[tar.A+3];
+                    else if(tar.A%4==1) (*rob)[tar.destination].value=(*ComputerMemory)[tar.A+1];
+                    else if(tar.A%4==2) (*rob)[tar.destination].value=(*ComputerMemory)[tar.A-1];
+                    else if(tar.A%4==3) (*rob)[tar.destination].value=(*ComputerMemory)[tar.A-3];
                     (*rob)[tar.destination].rob_state=ReorderBufferElements::write;
                     tar.now_status=LoadAndStoreReservationStationElement::finished;
                 }
